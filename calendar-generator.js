@@ -8,6 +8,7 @@ const getFebDays = (year) => {
   return isLeapYear(year) ? 29 : 28;
 };
 const calendar = document.getElementById('calendar-container');
+const calendarTypeElement = document.getElementById('calendar-type');
 const searchParams = new URLSearchParams(window.location.search);
 
 const getParam = (param, fallback) => {
@@ -17,53 +18,21 @@ const getParam = (param, fallback) => {
   return fallback;
 }
 
-const layoutType = getParam('layout-type', 'edges');
+const layoutType = getParam('layout-type', 'mirror');
 const color = getParam('color', 'purple');
 const year = getParam('year', new Date().getFullYear());
+const calendarType = getParam('calendar-type', 'year');
 
-document.body.classList.add(layoutType);
 document.body.classList.add(color);
-document.getElementById('year').innerText = `${year} `;
-
-const month_names = [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July',
-    'August',
-    'September',
-    'October',
-    'November',
-    'December',
-  ];
-const template = (month_name, month) => `<div class="calendar">
-  <div class="calendar-header">
-    <span class="month">${month_name}</span>
-  </div>
-  <div class="calendar-body">
-    <div class="calendar-week-days">
-      <div>S</div>
-      <div>M</div>
-      <div>T</div>
-      <div>W</div>
-      <div>Th</div>
-      <div>F</div>
-      <div>S</div>
-    </div>
-    <div class="calendar-days" id="calendar-days-${month}">
-    </div>
-  </div>
-</div>
-`;
+document.body.classList.add(calendarType);
 
 const generate_calendar = (year) => {
-  console.log(year)
+  if (calendarType === 'year') {
+    calendarTypeElement.innerText = `${year} Year-at-a-glance`;
+    document.body.classList.add(layoutType);
+  }
   month_names.forEach((month_name, i) => {
     const month = i;
-    
 
     if (i < 6) {
       calendar.querySelector('.first-column').innerHTML += template(month_name, month);

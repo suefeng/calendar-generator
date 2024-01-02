@@ -32,6 +32,10 @@
   --secondary: #0054c9;
   --tertiary: #6396fc;
 }
+.month {
+  --calendar-font-size: 1rem;
+  --square-size: 10rem;
+}
 
 html {
   height: 100vh;

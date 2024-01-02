@@ -29,18 +29,42 @@
             <option value="2026">2026</option>
           </select>
         </fieldset>
-
         <fieldset>
-          <legend>Layout type</legend>
+          <legend>Calendar type</legend>
+          <input
+            type="radio"
+            name="calendar-type"
+            id="calendar-type-year"
+            value="year"
+            checked="true"
+          />
+          <label for="calendar-type-year"> Year-at-a-glance </label>
+          <input
+            type="radio"
+            name="calendar-type"
+            id="calendar-type-month"
+            value="month"
+          />
+          <label for="calendar-type-month"> Monthly spread</label>
+          <input
+            type="radio"
+            name="calendar-type"
+            id="calendar-type-week"
+            value="week"
+          />
+          <label for="calendar-type-week"> Weekly spread</label>
+        </fieldset>
+        <fieldset>
+          <legend>Page layout type</legend>
           <p>
             <input
               type="radio"
               name="layout-type"
-              id="layout-type-edges"
-              value="edges"
+              id="layout-type-mirror"
+              value="mirror"
               checked="true"
             />
-            <label for="layout-type-edges"> Calendars on oposite sides</label>
+            <label for="layout-type-mirror"> Mirrored spread</label>
           </p>
           <p>
             <input
@@ -49,9 +73,7 @@
               id="layout-type-same-side"
               value="same-side"
             />
-            <label for="layout-type-same-side">
-              Calendars on the same side
-            </label>
+            <label for="layout-type-same-side"> Same-side spread </label>
           </p>
         </fieldset>
 

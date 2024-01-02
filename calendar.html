@@ -14,13 +14,6 @@
   </head>
 
   <body>
-    <div class="container">
-      <h2><span id="year"></span>Year-at-a-glance</h2>
-      <div id="calendar-container">
-        <div class="first-column"></div>
-        <div class="second-column"></div>
-      </div>
-    </div>
     <div class="reminder">
       <h2>Printing reminder</h2>
       <p>
@@ -29,6 +22,14 @@
       </p>
       <button onclick="window.history.back();">&lAarr; Go back</button>
     </div>
-    <script src="calendar-generator.js" defer></script>
+    <div class="container">
+      <h2 id="calendar-type"></h2>
+      <div id="calendar-container">
+        <div class="first-column"></div>
+        <div class="second-column"></div>
+      </div>
+    </div>
+    <script src="template-variables.js"></script>
+    <script src="calendar-generator.js"></script>
   </body>
 </html>

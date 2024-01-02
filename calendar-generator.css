@@ -1,42 +1,74 @@
-#calendar-container {
+.year #calendar-container {
   display: grid;
-  grid-template-columns: auto auto;
   width: auto;
+  grid-template-columns: auto auto;
 }
 
-.edges #calendar-container {
+.month #calendar-container {
+  display: block;
+}
+
+.mirror #calendar-container {
   justify-content: space-between;
 }
 
+/* two columns page spread */
 #calendar-container > div {
   display: grid;
   grid-template-rows: repeat(6, 1fr);
-  gap: .2rem;
 }
 
+.year #calendar-container > div {
+  gap: 0.2rem;
+}
+
+.month #calendar-container > div {
+  gap: 0.5in;
+}
+.month #calendar-container .first-column {
+  margin-bottom: 0.5in;
+}
+
+/* individual calendars */
 .calendar {
   font-size: var(--calendar-font-size);
   line-height: 1;
-  width: max-content;
   display: grid;
-  grid-template-rows: 1fr;
   align-items: stretch;
   justify-content: center;
-  gap: .7rem;
-  grid-template-columns: var(--square-size) 1fr;
+  position: relative;
+  break-inside: avoid-page;
 }
-.edges .second-column .calendar {
+.year .calendar {
+  grid-template-columns: var(--square-size) 1fr;
+  grid-template-rows: 1fr;
+  gap: 0.7rem;
+  height: 1.2in;
+  width: 1.7in;
+}
+.month .calendar {
+  grid-template-columns: 1fr;
+  grid-template-rows: 2rem 1fr;
+  gap: 1rem;
+  width: 8.7in;
+  height: 8in;
+}
+.month .calendar:not(:first-of-type) {
+  margin-top: 0.25in;
+}
+
+.mirror .second-column .calendar {
   grid-template-columns: 1fr var(--square-size);
 }
-.edges .second-column .calendar-header {
+.mirror .second-column .calendar-header {
   order: 2;
 }
-.edges .second-column .calendar-body {
+.mirror .second-column .calendar-body {
   order: 1;
 }
 
 .calendar-body {
-  padding-top: .3rem;
+  padding-top: 0.3rem;
 }
 
 .calendar-header {
@@ -61,7 +93,7 @@
   grid-template-rows: 1fr;
   align-items: stretch;
   font-weight: 700;
-  color: var(--secondary)
+  color: var(--secondary);
 }
 
 .calendar-week-days div {
@@ -70,25 +102,42 @@
   color: var(--secondary);
 }
 
+.month .calendar-week-days div {
+  padding-bottom: 0.5rem;
+}
+
 .calendar-days {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   grid-template-rows: repeat(6, 1fr);
   color: var(--primary);
   position: relative;
+  gap: 1px;
+}
+.month .calendar-days {
+  height: 100%;
 }
 
+/* individual days */
 .calendar-days div {
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
+}
+.year .calendar-days div {
   height: var(--square-size);
-  width: var(--square-size);
+}
+.month .calendar-days div {
+  align-items: start;
+  justify-content: start;
+  outline: var(--border) solid 1px;
+  padding: 0.5rem;
 }
 
+/* dotted lines for year view notes */
 .calendar-days div:nth-of-type(7n):after {
-  content: '';
+  content: "";
   display: block;
   width: calc(50vw - (4 * var(--square-size)));
   height: var(--square-size);
@@ -97,21 +146,47 @@
   bottom: 0;
 }
 
-.edges .calendar-days div:nth-of-type(7n):after {
+.mirror .calendar-days div:nth-of-type(7n):after {
   width: calc(100vw - (7 * var(--square-size)));
 }
 
 .same-side .calendar-days div:nth-of-type(7n):after,
 .first-column .calendar-days div:nth-of-type(7n):after {
-  left: calc(0rem - (6 * var(--square-size)));
+  left: calc(0rem - (7 * var(--square-size)));
 }
 
-.edges .second-column .calendar-days div:nth-of-type(7n):after {
+.mirror .second-column .calendar-days div:nth-of-type(7n):after {
   right: 0;
 }
 
+.month .calendar-days div:nth-of-type(7n):after {
+  display: none;
+}
+
+.month .notes {
+  position: absolute;
+  top: 0;
+  right: calc(0rem - var(--square-size) - 1rem);
+  bottom: 0;
+  width: 10rem;
+  outline: var(--border) solid 1px;
+  display: flex;
+  flex-direction: column;
+}
+.month .notes:before {
+  content: "Notes";
+  background-color: var(--tertiary);
+  color: #fff;
+  padding: 0.5rem 1rem;
+}
+.month .notes:after {
+  content: "";
+}
+
+/* reminder that shows up only on screen */
 .reminder {
-  margin-top: 1rem;
+  margin-bottom: 1rem;
+  max-width: 50rem;
 }
 .reminder p {
   margin-bottom: 1rem;
