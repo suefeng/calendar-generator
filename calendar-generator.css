@@ -1,0 +1,124 @@
+#calendar-container {
+  display: grid;
+  grid-template-columns: auto auto;
+  width: auto;
+}
+
+.edges #calendar-container {
+  justify-content: space-between;
+}
+
+#calendar-container > div {
+  display: grid;
+  grid-template-rows: repeat(6, 1fr);
+  gap: .2rem;
+}
+
+.calendar {
+  font-size: var(--calendar-font-size);
+  line-height: 1;
+  width: max-content;
+  display: grid;
+  grid-template-rows: 1fr;
+  align-items: stretch;
+  justify-content: center;
+  gap: .7rem;
+  grid-template-columns: var(--square-size) 1fr;
+}
+.edges .second-column .calendar {
+  grid-template-columns: 1fr var(--square-size);
+}
+.edges .second-column .calendar-header {
+  order: 2;
+}
+.edges .second-column .calendar-body {
+  order: 1;
+}
+
+.calendar-body {
+  padding-top: .3rem;
+}
+
+.calendar-header {
+  background-color: var(--tertiary);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #ffffff;
+  padding: 0 10px;
+  word-break: break-all;
+  text-transform: uppercase;
+  text-align: center;
+  font-weight: 700;
+  height: 100%;
+  z-index: 10;
+  border-radius: 3px;
+}
+
+.calendar-week-days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-template-rows: 1fr;
+  align-items: stretch;
+  font-weight: 700;
+  color: var(--secondary)
+}
+
+.calendar-week-days div {
+  display: grid;
+  place-items: center;
+  color: var(--secondary);
+}
+
+.calendar-days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-template-rows: repeat(6, 1fr);
+  color: var(--primary);
+  position: relative;
+}
+
+.calendar-days div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  height: var(--square-size);
+  width: var(--square-size);
+}
+
+.calendar-days div:nth-of-type(7n):after {
+  content: '';
+  display: block;
+  width: calc(50vw - (4 * var(--square-size)));
+  height: var(--square-size);
+  position: absolute;
+  border-bottom: 1px dashed var(--border);
+  bottom: 0;
+}
+
+.edges .calendar-days div:nth-of-type(7n):after {
+  width: calc(100vw - (7 * var(--square-size)));
+}
+
+.same-side .calendar-days div:nth-of-type(7n):after,
+.first-column .calendar-days div:nth-of-type(7n):after {
+  left: calc(0rem - (6 * var(--square-size)));
+}
+
+.edges .second-column .calendar-days div:nth-of-type(7n):after {
+  right: 0;
+}
+
+.reminder {
+  margin-top: 1rem;
+}
+.reminder p {
+  margin-bottom: 1rem;
+}
+
+@media print {
+  .reminder {
+    display: none;
+  }
+}

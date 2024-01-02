@@ -1,0 +1,69 @@
+:root {
+  --font-size: 1rem;
+  --calendar-font-size: .6rem;
+  --square-size: 1rem;
+  --primary: #0A0921;
+  --secondary: #6D67CF;
+  --tertiary: #8089FE;
+  --border: #ccc;
+}
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.pink {
+  --secondary: #c90068;
+  --tertiary: #fc63c9;
+}
+
+.orange {
+  --secondary: #c95400;
+  --tertiary: #fa8459;
+}
+
+.green {
+  --secondary: #189702;
+  --tertiary: #50d24d;
+}
+
+.blue {
+  --secondary: #0054c9;
+  --tertiary: #6396fc;
+}
+
+html {
+  height: 100vh;
+}
+body {
+  font-size: var(--font-size);
+  font-family: 'Sono', monospace;
+  line-height: 1.6;
+  position: relative;
+  padding: .25in;
+}
+button {
+  padding: .5rem;
+  background-color: rgb(255, 203, 70);
+  border: 0;
+  box-shadow: #aaa 0 0 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  border-top: 1px solid rgb(255, 229, 163);
+  border-left: 1px solid rgb(255, 229, 163);
+  border-bottom: 3px solid rgb(121, 87, 0);
+  border-right: 3px solid rgb(121, 87, 0);
+  outline: #522000 solid 1px;
+  font-weight: 700;
+}
+button:hover {
+  background-color: rgb(255, 135, 70);
+  outline: #fff solid 1px;
+}
+button:active {
+  margin-top: 2px;
+  margin-left: 2px;
+  border-bottom: 1px solid rgb(121, 87, 0);
+  border-right: 1px solid rgb(121, 87, 0);
+}

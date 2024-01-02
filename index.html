@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Year-at-a-glance Calendar Generator</title>
+    <link rel="stylesheet" href="theme.css" />
+    <link rel="stylesheet" href="calendar-menu.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Sono:400,600&display=swap"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Calendar Generator</h1>
+      <p>
+        Select from the following options to generate a printable
+        year-at-a-glance calendar. Then click "Generage calendar". Save it as a
+        PDF and print with your preferred printing options. Be sure to enable
+        "Print background" and select "none" for margins.
+      </p>
+      <form action="calendar.html">
+        <fieldset>
+          <legend>Year</legend>
+          <select name="year">
+            <option value="2024" selected>2024</option>
+            <option value="2025">2025</option>
+            <option value="2026">2026</option>
+          </select>
+        </fieldset>
+
+        <fieldset>
+          <legend>Layout type</legend>
+          <p>
+            <input
+              type="radio"
+              name="layout-type"
+              id="layout-type-edges"
+              value="edges"
+              checked="true"
+            />
+            <label for="layout-type-edges"> Calendars on oposite sides</label>
+          </p>
+          <p>
+            <input
+              type="radio"
+              name="layout-type"
+              id="layout-type-same-side"
+              value="same-side"
+            />
+            <label for="layout-type-same-side">
+              Calendars on the same side
+            </label>
+          </p>
+        </fieldset>
+
+        <fieldset>
+          <legend>Main calendar color</legend>
+          <input
+            type="radio"
+            name="color"
+            id="color-pink"
+            value="pink"
+            checked="true"
+          />
+          <label for="color-pink" class="pink"> Pink </label>
+          <input type="radio" name="color" id="color-orange" value="orange" />
+          <label for="color-orange" class="orange"> Orange </label>
+          <input type="radio" name="color" id="color-green" value="green" />
+          <label for="color-green" class="green"> Green </label>
+          <input type="radio" name="color" id="color-purple" value="purple" />
+          <label for="color-purple" class="purple">Purple</label>
+          <input type="radio" name="color" id="color-blue" value="blue" />
+          <label for="color-blue" class="blue"> Blue </label>
+        </fieldset>
+        <button type="submit">Generate calendar</button>
+      </form>
+    </div>
+    <script src="calendar-menu.js"></script>
+  </body>
+</html>

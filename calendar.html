@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Year-at-a-glance Calendar</title>
+    <link rel="stylesheet" href="theme.css" />
+    <link rel="stylesheet" href="calendar-generator.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700&display=swap"
+    />
+  </head>
+
+  <body>
+    <div class="container">
+      <h2><span id="year"></span>Year-at-a-glance</h2>
+      <div id="calendar-container">
+        <div class="first-column"></div>
+        <div class="second-column"></div>
+      </div>
+    </div>
+    <div class="reminder">
+      <h2>Printing reminder</h2>
+      <p>
+        Save it as a PDF and print with your preferred printing options. Be sure
+        to enable "Print background" and select "none" for margins.
+      </p>
+      <button onclick="window.history.back();">&lAarr; Go back</button>
+    </div>
+    <script src="calendar-generator.js" defer></script>
+  </body>
+</html>

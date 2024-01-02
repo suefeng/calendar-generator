@@ -1,0 +1,60 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  background-color: #eee;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+.container {
+  border-radius: 1rem;
+  border: 3px solid rgb(255, 203, 70);
+  background-color: rgb(141, 221, 252);
+  padding: 2rem;
+  max-width: 50rem;
+  margin: auto;
+}
+fieldset {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  padding: 1rem;
+  border: 1px solid var(--primary);
+  display: flex;
+  gap: 1rem;
+}
+legend {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+select {
+  padding: .5rem 1rem;
+  background-color: #fff;
+  border: 1px solid var(--primary);
+  border-radius: 3px;
+  width: 100%;
+}
+label {
+  background-color: var(--tertiary);
+  outline: var(--secondary) solid 3px;
+  display: block;
+  padding: .3rem .5rem;
+  border-radius: 3px;
+  position: relative;
+  cursor: pointer;
+}
+input {
+  visibility: hidden;
+  position: absolute;
+}
+input:focus-visible + label {
+  outline: #fff solid 3px;
+}
+input:checked + label {
+  background-color: var(--secondary);
+  outline: #fff solid 3px;
+  color: #fff;
+}
