@@ -12,7 +12,7 @@ const calendarTypeElement = document.getElementById('calendar-type');
 const searchParams = new URLSearchParams(window.location.search);
 
 const getParam = (param, fallback) => {
-  if(searchParams && searchParams.has(param)) {
+  if (searchParams && searchParams.has(param)) {
     return searchParams.get(param);
   }
   return fallback;
@@ -40,7 +40,7 @@ const generate_calendar = (year) => {
     if (i > 5) {
       calendar.querySelector('.second-column').innerHTML += template(month_name, month);
     }
-    
+
     let first_day = new Date(year, month);
     let days_of_month = [
       31,
@@ -62,7 +62,7 @@ const generate_calendar = (year) => {
     for (let i = 0; i <= days_of_month[month] + first_day.getDay() - 1; i++) {
 
       let day = document.createElement('div');
-  
+
       if (i >= first_day.getDay()) {
         day.innerHTML = i - first_day.getDay() + 1;
       }
