@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Calendar</title>
     <link rel="stylesheet" href="theme.css" />
-    <link rel="stylesheet" href="calendar-generator.css" />
+    <link rel="stylesheet" href="calendar.css" />
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700&display=swap"
@@ -14,12 +14,29 @@
   </head>
 
   <body>
-    <div class="reminder">
-      <h2>Printing reminder</h2>
-      <p>
-        Save it as a PDF and print with your preferred printing options. Be sure
-        to enable "Print background" and select "none" for margins.
-      </p>
+    <div class="instructions">
+      <h2>Printing instructions</h2>
+      <ol>
+        <li>
+          <code>ctrl</code> or <code>cmd</code> + <code>p</code> or choose
+          "File" &rarr; "Print" from your browser's menu.
+        </li>
+        <li>
+          View the preview to make sure no parts are cut off. Make sure you have
+          these settings:
+          <ol>
+            <li>"Orientation" is "Landscape"</li>
+            <li>"Scale" is set to "Fit to page width"</li>
+            <li>"Margins" is set to "none"</li>
+            <li>"Print headers and footers" is disabled</li>
+            <li>"Print background" is enabled</li>
+          </ol>
+        </li>
+        <li>
+          Save as PDF and print the PDF or print directly. If you choose to
+          print directly, remember to try just one page first.
+        </li>
+      </ol>
       <button onclick="window.history.back();">&lAarr; Go back</button>
     </div>
     <div class="container">
