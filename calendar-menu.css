@@ -5,10 +5,7 @@
 }
 body {
   background-color: #eee;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
+  min-height: 100vh;
 }
 .container {
   border-radius: 1rem;
@@ -17,6 +14,7 @@ body {
   padding: 2rem;
   max-width: 50rem;
   margin: auto;
+  margin-top: 2rem;
 }
 fieldset {
   margin-top: 2rem;
@@ -26,12 +24,15 @@ fieldset {
   display: flex;
   gap: 1rem;
 }
+.hidden {
+  display: none;
+}
 legend {
   padding-left: 1rem;
   padding-right: 1rem;
 }
 select {
-  padding: .5rem 1rem;
+  padding: 0.5rem 1rem;
   background-color: #fff;
   border: 1px solid var(--primary);
   border-radius: 3px;
@@ -41,7 +42,7 @@ label {
   background-color: var(--tertiary);
   outline: var(--secondary) solid 3px;
   display: block;
-  padding: .3rem .5rem;
+  padding: 0.3rem 0.5rem;
   border-radius: 3px;
   position: relative;
   cursor: pointer;
