@@ -26,10 +26,10 @@
 }
 
 .month #calendar-container > div {
-  gap: var(--total-print-margin);
+  gap: 0;
 }
 .month #calendar-container .first-column {
-  margin-bottom: var(--total-print-margin);
+  margin-bottom: 0;
 }
 
 /* individual calendars */
@@ -52,7 +52,7 @@
 .month .calendar {
   grid-template-columns: 1fr auto;
   grid-template-rows: 2rem 1fr;
-  gap: 1rem;
+  gap: var(--print-margin);
   width: calc(100vw - var(--total-print-margin));
   height: calc(100vh - var(--total-print-margin));
   justify-content: stretch;
