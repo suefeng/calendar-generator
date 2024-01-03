@@ -1,3 +1,6 @@
+.year .container {
+  break-inside: avoid-page;
+}
 .year #calendar-container {
   display: grid;
   width: auto;
@@ -23,10 +26,10 @@
 }
 
 .month #calendar-container > div {
-  gap: 0.5in;
+  gap: var(--total-print-margin);
 }
 .month #calendar-container .first-column {
-  margin-bottom: 0.5in;
+  margin-bottom: var(--total-print-margin);
 }
 
 /* individual calendars */
@@ -40,25 +43,30 @@
   break-inside: avoid-page;
 }
 .year .calendar {
-  grid-template-columns: var(--square-size) 1fr;
+  grid-template-columns: var(--square-size) 1fr 0;
   grid-template-rows: 1fr;
   gap: 0.7rem;
   height: 1.2in;
   width: 1.7in;
 }
 .month .calendar {
-  grid-template-columns: 1fr;
+  grid-template-columns: 1fr auto;
   grid-template-rows: 2rem 1fr;
   gap: 1rem;
-  width: 8.7in;
-  height: 8in;
+  width: calc(100vw - var(--total-print-margin));
+  height: calc(100vh - var(--total-print-margin));
+  justify-content: stretch;
+  align-items: stretch;
 }
-.month .calendar:not(:first-of-type) {
-  margin-top: 0.25in;
+.month .calendar {
+  margin-top: var(--print-margin);
+}
+.month .first-column .calendar:first-of-type {
+  margin-top: 0;
 }
 
 .mirror .second-column .calendar {
-  grid-template-columns: 1fr var(--square-size);
+  grid-template-columns: 0 1fr var(--square-size);
 }
 .mirror .second-column .calendar-header {
   order: 2;
@@ -69,6 +77,14 @@
 
 .calendar-body {
   padding-top: 0.3rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto 1fr;
+}
+
+.month .calendar-body {
+  grid-column: 1;
+  grid-row: 2;
 }
 
 .calendar-header {
@@ -85,6 +101,11 @@
   height: 100%;
   z-index: 10;
   border-radius: 3px;
+}
+
+.month .calendar-header {
+  grid-column: 1;
+  grid-row: 1;
 }
 
 .calendar-week-days {
@@ -113,9 +134,6 @@
   color: var(--primary);
   position: relative;
   gap: 1px;
-}
-.month .calendar-days {
-  height: 100%;
 }
 
 /* individual days */
@@ -164,36 +182,52 @@
 }
 
 .month .notes {
-  position: absolute;
-  top: 0;
-  right: calc(0rem - var(--square-size) - 1rem);
-  bottom: 0;
-  width: 10rem;
   outline: var(--border) solid 1px;
   display: flex;
   flex-direction: column;
+  grid-column: 2;
+  grid-row: span 2;
 }
+
 .month .notes:before {
   content: "Notes";
   background-color: var(--tertiary);
   color: #fff;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 3rem;
+  border-radius: 3px;
+  margin: 0.5rem;
+  font-weight: 700;
 }
 .month .notes:after {
   content: "";
 }
 
-/* reminder that shows up only on screen */
-.reminder {
-  margin-bottom: 1rem;
+/* instructions that shows up only on screen */
+.instructions {
+  margin-bottom: 2rem;
   max-width: 50rem;
 }
-.reminder p {
+.instructions p {
   margin-bottom: 1rem;
+}
+ol {
+  margin-left: 2rem;
+  margin-bottom: 2rem;
+}
+ol ol {
+  margin-bottom: 0;
+}
+
+code {
+  border: 1px solid var(--border);
+  padding: 0.2rem 0.5rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  border-radius: 3px;
 }
 
 @media print {
-  .reminder {
+  .instructions {
     display: none;
   }
 }
