@@ -46,7 +46,7 @@ const template = (month_name, month) => `
     </div>
     <div class="calendar-days" id="calendar-days-${month}">
     </div>
-    <div class="notes"></div>
   </div>
+  <div class="notes"></div>
 </div>
 `;
