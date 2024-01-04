@@ -1,17 +1,8 @@
-const isLeapYear = (year) => {
-  return (
-    (year % 4 === 0 && year % 100 !== 0 && year % 400 !== 0) ||
-    (year % 100 === 0 && year % 400 === 0)
-  );
-};
-const getFebDays = (year) => {
-  return isLeapYear(year) ? 29 : 28;
-};
 const calendar = document.getElementById('calendar-container');
 const calendarTypeElement = document.getElementById('calendar-type');
-const searchParams = new URLSearchParams(window.location.search);
 
 const getParam = (param, fallback) => {
+  const searchParams = new URLSearchParams(window.location.search);
   if (searchParams && searchParams.has(param)) {
     return searchParams.get(param);
   }
@@ -22,53 +13,50 @@ const layoutType = getParam('layout-type', 'mirror');
 const color = getParam('color', 'purple');
 const year = getParam('year', new Date().getFullYear());
 const calendarType = getParam('calendar-type', 'year');
+const showHolidays = getParam('holidays', 'hide-holidays');
 
 document.body.classList.add(color);
 document.body.classList.add(calendarType);
+document.body.classList.add(showHolidays);
 
-const generate_calendar = (year) => {
+const generateCalendar = (year) => {
   if (calendarType === 'year') {
     calendarTypeElement.innerText = `${year} Year-at-a-glance`;
     document.body.classList.add(layoutType);
   }
-  month_names.forEach((month_name, i) => {
+  const holidays = generateHolidays(year);
+
+  monthNames.forEach((monthName, i) => {
     const month = i;
 
     if (i < 6) {
-      calendar.querySelector('.first-column').innerHTML += template(month_name, month);
+      calendar.querySelector('.first-column').innerHTML += calendarTemplate(monthName, month);
     }
     if (i > 5) {
-      calendar.querySelector('.second-column').innerHTML += template(month_name, month);
+      calendar.querySelector('.second-column').innerHTML += calendarTemplate(monthName, month);
     }
 
-    let first_day = new Date(year, month);
-    let days_of_month = [
-      31,
-      getFebDays(year),
-      31,
-      30,
-      31,
-      30,
-      31,
-      31,
-      30,
-      31,
-      30,
-      31,
-    ];
-    let calendar_days = document.getElementById(`calendar-days-${month}`);
-    calendar_days.innerHTML = '';
+    let firstDay = new Date(year, month);
+    const daysOfMonth = generateDaysOfMonth(year);
+    let calendarDays = document.getElementById(`calendar-days-${month}`);
+    calendarDays.innerHTML = '';
 
-    for (let i = 0; i <= days_of_month[month] + first_day.getDay() - 1; i++) {
+    for (let i = 0; i <= daysOfMonth[month] + firstDay.getDay() - 1; i++) {
 
       let day = document.createElement('div');
 
-      if (i >= first_day.getDay()) {
-        day.innerHTML = i - first_day.getDay() + 1;
+      if (i >= firstDay.getDay()) {
+        const date = i - firstDay.getDay() + 1;
+        day.innerHTML = `<div class="day">${date}</div>`;
+        holidays.filter(holiday => {
+          if (month === holiday.month - 1 && date === holiday.day) {
+            day.innerHTML += `<div class="holiday">${holiday.name}</div>`;
+          }
+        });
       }
-      calendar_days.appendChild(day);
+      calendarDays.appendChild(day);
     }
   });
 }
 
-generate_calendar(year);
+generateCalendar(year);

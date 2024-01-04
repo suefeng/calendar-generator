@@ -117,13 +117,13 @@
   color: var(--secondary);
 }
 
-.calendar-week-days div {
+.calendar-week-days > div {
   display: grid;
   place-items: center;
   color: var(--secondary);
 }
 
-.month .calendar-week-days div {
+.month .calendar-week-days > div {
   padding-bottom: 0.5rem;
 }
 
@@ -137,16 +137,16 @@
 }
 
 /* individual days */
-.calendar-days div {
+.calendar-days > div {
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
 }
-.year .calendar-days div {
+.year .calendar-days > div {
   height: var(--square-size);
 }
-.month .calendar-days div {
+.month .calendar-days > div {
   align-items: start;
   justify-content: start;
   outline: var(--border) solid 1px;
@@ -200,6 +200,18 @@
 }
 .month .notes:after {
   content: "";
+}
+
+.year .holiday,
+.hide-holidays .holiday {
+  display: none;
+}
+
+.month.show-holidays .holiday {
+  position: absolute;
+  bottom: 0.5rem;
+  left: 0.5rem;
+  font-size: 0.8rem;
 }
 
 /* instructions that shows up only on screen */
