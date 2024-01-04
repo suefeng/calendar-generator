@@ -173,7 +173,7 @@
 
 .same-side .calendar-days div:nth-of-type(7n):after,
 .first-column .calendar-days div:nth-of-type(7n):after {
-  left: calc(0rem - (7 * var(--square-size)));
+  left: calc(0rem - (8.5 * var(--square-size)));
 }
 
 .mirror .second-column .calendar-days div:nth-of-type(7n):after {
@@ -226,35 +226,6 @@
   padding-top: var(--print-margin);
   break-before: always;
 }
-
-/* .year.show-holidays .calendar {
-  grid-template-rows: 1fr auto;
-}
-.year.show-holidays .calendar-header {
-  grid-row: span 2;
-}
-.year.show-holidays .calendar-body {
-  grid-row: 1;
-  height: 0.9in;
-}
-.year.show-holidays.mirror .first-column .calendar-body,
-.year.show-holidays.same-side .calendar-body {
-  grid-column: 2;
-}
-.year.show-holidays.mirror .second-column .calendar-body {
-  grid-column: 1;
-  justify-self: end;
-}
-.year.show-holidays .holidays {
-  grid-row: 2;
-  grid-column: 2;
-  font-size: 0.7rem;
-  white-space: nowrap;
-}
-.year.show-holidays.mirror .second-column .holidays {
-  text-align: right;
-  grid-column: 1;
-} */
 
 /* instructions that shows up only on screen */
 .instructions {

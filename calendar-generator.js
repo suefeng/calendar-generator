@@ -25,6 +25,9 @@ const generateCalendar = (year) => {
     document.body.classList.add(layoutType);
   }
   const holidays = generateHolidays(year);
+  const lunarNewYear = getLunarNewYear(2024);
+  holidays.push({ "month": lunarNewYear.getMonth() + 1, "day": lunarNewYear.getDate(), "name": "Lunar New Year", category: "other" });
+  holidays.sort((a, b) => a.month - b.month);
 
   monthNames.forEach((monthName, i) => {
     const month = i;
