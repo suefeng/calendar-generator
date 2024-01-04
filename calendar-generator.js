@@ -1,4 +1,4 @@
-const calendar = document.getElementById('calendar-container');
+const calendarContainer = document.getElementById('calendar-container');
 const calendarTypeElement = document.getElementById('calendar-type');
 
 const getParam = (param, fallback) => {
@@ -30,10 +30,10 @@ const generateCalendar = (year) => {
     const month = i;
 
     if (i < 6) {
-      calendar.querySelector('.first-column').innerHTML += calendarTemplate(monthName, month);
+      calendarContainer.querySelector('.first-column').innerHTML += calendarTemplate(monthName, month);
     }
     if (i > 5) {
-      calendar.querySelector('.second-column').innerHTML += calendarTemplate(monthName, month);
+      calendarContainer.querySelector('.second-column').innerHTML += calendarTemplate(monthName, month);
     }
 
     let firstDay = new Date(year, month);
@@ -48,15 +48,24 @@ const generateCalendar = (year) => {
       if (i >= firstDay.getDay()) {
         const date = i - firstDay.getDay() + 1;
         day.innerHTML = `<div class="day">${date}</div>`;
-        holidays.filter(holiday => {
-          if (month === holiday.month - 1 && date === holiday.day) {
-            day.innerHTML += `<div class="holiday">${holiday.name}</div>`;
-          }
-        });
+
+        if (calendarType === 'month') {
+          holidays.filter(holiday => {
+            if (month === holiday.month - 1 && date === holiday.day) {
+              day.innerHTML += `<div class="holiday">${holiday.name}</div>`;
+            }
+          });
+        }
       }
       calendarDays.appendChild(day);
     }
   });
+
+  if (calendarType === 'year') {
+    const holidayWrapper = document.createElement('div');
+    holidayWrapper.innerHTML = holidaysTemplate(holidays)
+    calendarContainer.after(holidayWrapper);
+  }
 }
 
 generateCalendar(year);

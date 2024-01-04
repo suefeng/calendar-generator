@@ -146,3 +146,24 @@ const calendarTemplate = (month_name, month) => `
   <div class="notes"></div>
 </div>
 `;
+
+const holidaysTemplate = (holidays) => `
+<div class="holidays">
+  <h2>Holidays</h2>
+  <table>
+    <thead>
+      <th>Date</th><th>Name</th>
+    </thead>
+    <tbody>
+      ${holidaysList(holidays)}
+    </tbody>
+  </table>
+</div>
+`;
+
+const holidaysList = (holidays) => holidays.map(holiday => `
+<tr class="holiday">
+  <td>${monthNames[holiday.month - 1]} ${holiday.day}</td>
+  <td>${holiday.name}</td>
+</tr>
+`).join('');

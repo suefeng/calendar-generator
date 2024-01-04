@@ -43,11 +43,9 @@
   break-inside: avoid-page;
 }
 .year .calendar {
-  grid-template-columns: var(--square-size) 1fr 0;
+  grid-template-columns: var(--square-size) 1fr;
   grid-template-rows: 1fr;
   gap: 0.7rem;
-  height: 1.2in;
-  width: 1.7in;
 }
 .month .calendar {
   grid-template-columns: 1fr auto;
@@ -66,7 +64,7 @@
 }
 
 .mirror .second-column .calendar {
-  grid-template-columns: 0 1fr var(--square-size);
+  grid-template-columns: 1fr var(--square-size);
 }
 .mirror .second-column .calendar-header {
   order: 2;
@@ -80,6 +78,11 @@
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: auto 1fr;
+}
+
+.year .calendar-body {
+  width: 1.7in;
+  height: 1.2in;
 }
 
 .month .calendar-body {
@@ -181,6 +184,10 @@
   display: none;
 }
 
+/* notes */
+.year .notes {
+  display: none;
+}
 .month .notes {
   outline: var(--border) solid 1px;
   display: flex;
@@ -202,7 +209,8 @@
   content: "";
 }
 
-.year .holiday,
+/* holidays */
+.hide-holidays .holidays,
 .hide-holidays .holiday {
   display: none;
 }
@@ -211,8 +219,42 @@
   position: absolute;
   bottom: 0.5rem;
   left: 0.5rem;
-  font-size: 0.8rem;
+  font-size: 0.7rem;
 }
+
+.year.show-holidays .holidays {
+  padding-top: var(--print-margin);
+  break-before: always;
+}
+
+/* .year.show-holidays .calendar {
+  grid-template-rows: 1fr auto;
+}
+.year.show-holidays .calendar-header {
+  grid-row: span 2;
+}
+.year.show-holidays .calendar-body {
+  grid-row: 1;
+  height: 0.9in;
+}
+.year.show-holidays.mirror .first-column .calendar-body,
+.year.show-holidays.same-side .calendar-body {
+  grid-column: 2;
+}
+.year.show-holidays.mirror .second-column .calendar-body {
+  grid-column: 1;
+  justify-self: end;
+}
+.year.show-holidays .holidays {
+  grid-row: 2;
+  grid-column: 2;
+  font-size: 0.7rem;
+  white-space: nowrap;
+}
+.year.show-holidays.mirror .second-column .holidays {
+  text-align: right;
+  grid-column: 1;
+} */
 
 /* instructions that shows up only on screen */
 .instructions {
