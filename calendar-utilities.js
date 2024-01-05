@@ -206,16 +206,12 @@ const generateHolidays = (year) => [
   },
 ];
 
-const isLeapYear = (year) => {
-  return (
-    (year % 4 === 0 && year % 100 !== 0 && year % 400 !== 0) ||
-    (year % 100 === 0 && year % 400 === 0)
-  );
-};
+const isLeapYear = (year) => (
+  (year % 4 === 0 && year % 100 !== 0 && year % 400 !== 0) ||
+  (year % 100 === 0 && year % 400 === 0)
+);
 
-const getFebDays = (year) => {
-  return isLeapYear(year) ? 29 : 28;
-};
+const getFebDays = (year) => isLeapYear(year) ? 29 : 28;
 
 const generateDaysOfMonth = (year) => [
   31,
@@ -278,6 +274,10 @@ function get_new_moons(date) {
   return new_moons
 }
 
+/**
+ * Calculate Lunar New Year from:
+ * https://stackoverflow.com/questions/55023376/how-can-i-calculate-the-date-of-chinese-new-year-in-javascript/75198264#75198264
+ */
 function inLunarNewYear(date) {
   /* The date is decided by the Lunar Calendar, which is based on the
   cycles of the moon and sun and is generally 21–51 days behind the Gregorian
@@ -295,40 +295,30 @@ function getLunarNewYear(gregorian_year) {
   }
 }
 
-const calendarTemplate = (month_name, month) => `
-<div class="calendar">
-  <div class="calendar-header">
-    <span class="month">${month_name}</span>
-  </div>
-  <div class="calendar-body">
-    <div class="calendar-week-days">
-      ${weekDaysTemplate()}
-    </div>
-    <div class="calendar-days" id="calendar-days-${month}">
-    </div>
-  </div>
-  <div class="notes"></div>
-</div>
-`;
+/**
+ * Calculate Easter from: 
+ * https://gist.github.com/johndyer/0dffbdd98c2046f41180c051f378f343 
+ */
+function getEaster(year) {
+  /**
+  * Calculates Easter in the Gregorian/Western (Catholic and Protestant) calendar 
+  * based on the algorithm by Oudin (1940) from http://www.tondering.dk/claus/cal/easter.php
+  * @returns {array} [int month, int day]
+  */
+  var f = Math.floor,
+    // Golden Number - 1
+    G = year % 19,
+    C = f(year / 100),
+    // related to Epact
+    H = (C - f(C / 4) - f((8 * C + 13) / 25) + 19 * G + 15) % 30,
+    // number of days from 21 March to the Paschal full moon
+    I = H - f(H / 28) * (1 - f(29 / (H + 1)) * f((21 - G) / 11)),
+    // weekday for the Paschal full moon
+    J = (year + f(year / 4) + I + 2 - C + f(C / 4)) % 7,
+    // number of days from 21 March to the Sunday on or before the Paschal full moon
+    L = I - J,
+    month = 3 + f((L + 40) / 44),
+    day = L + 28 - 31 * f(month / 4);
 
-const holidaysList = (holidays) => holidays.map(holiday => `
-<tr class="holiday">
-  <td>${monthNames[holiday.month - 1]} ${holiday.day}</td>
-  <td>${holiday.name}</td>
-  <td>${holiday.category}</td>
-</tr>
-`).join('');
-
-const holidaysTemplate = (holidays) => `
-<div class="holidays">
-  <h2>Holidays</h2>
-  <table>
-    <thead>
-      <th>Date</th><th>Name</th><th>Category</th>
-    </thead>
-    <tbody>
-      ${holidaysList(holidays)}
-    </tbody>
-  </table>
-</div>
-`;
+  return [month, day];
+}
