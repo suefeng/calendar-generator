@@ -244,7 +244,7 @@ ol ol {
   margin-bottom: 0;
 }
 
-code {
+kbd {
   border: 1px solid var(--border);
   padding: 0.2rem 0.5rem;
   font-size: 0.8rem;
