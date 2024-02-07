@@ -322,3 +322,14 @@ function getEaster(year) {
 
   return [month, day];
 }
+
+function formatDoubleDigit(number) {
+  return number.toLocaleString('en-US', {
+    minimumIntegerDigits: 2,
+    useGrouping: false
+  })
+}
+
+function formatMonthDay(month, day) {
+  return Number(`${month}.${formatDoubleDigit(day)}`);
+}

@@ -29,7 +29,7 @@ const generateCalendar = (year) => {
   const easter = getEaster(year);
   holidays.push({ "month": lunarNewYear.getMonth() + 1, "day": lunarNewYear.getDate(), "name": "Lunar New Year", category: "other" });
   holidays.push({ "month": easter[0], "day": easter[1], "name": "Easter Sunday", category: "other" });
-  holidays.sort((a, b) => a.month - b.month);
+  holidays.sort((a, b) => formatMonthDay(a.month, a.day) - formatMonthDay(b.month, b.day));
 
   monthNames.forEach((monthName, i) => {
     const month = i;
